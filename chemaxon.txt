@@ -1,0 +1,18 @@
+Dear Bilal,
+ 
+Sorry for my late reply but we had several deadlines to meet.
+
+We have a local version of our server (see attached snapshot) but I don't currently have a version to share.
+
+Our IT guy is on vacation right now and I will ask him to install it on a shared server when he returns.
+
+Also, the server was developed under angular/nodes.js by the student but I'm not sure if this is the best option.
+Unfortunately, I don't have the manpower at the moment to develop a new version.
+
+Regarding the Galaxy server (https://chemodots.marseille.inserm.fr), the license has expired.
+
+Would it be possible to renew this license? I don't remember exactly which license is needed.
+
+All the best
+
+Philippe

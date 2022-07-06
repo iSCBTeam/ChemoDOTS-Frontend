@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <meta charset="UTF-8">
+
+
+
+
+</head>
+
+<body>
+
+
+
+<header>
+  <div>
+    <span>ChemoDOTS</span>
+    <span>Growing Mode</span>
+  </div>
+
+</header>
+
+<div id="main">
+
+  <div id="left" > <!-- left part-->
+
+    <div id="sketcher" style="width:100%;min-height: 430px;max-height: 730px;max-width:850px;">
+      <h2><i class="fas fa-pen-square"></i> Structure</h2>
+      <div id="marvin-test" style="width: 100%; height: 80%;min-height: 400px;max-height: 700px"></div>
+      <input id="validate-button" type="button" (click)="ValidateMol()" name="generateMol" value="Validate" class="btnFormSettings"
+             onmouseover="return overlib (' Click here to validate your molecule',HAUTO, VAUTO);" onmouseout="return nd ();">
+    </div>
+
+
+
+  </div> <!-- end left-->
+
+  <Br> <Br>
+
+
+  <div id="right">
+
+    <fieldset id="struct">
+
+      <h2><i class="fab fa-react"></i> Structure</h2>
+
+
+      <h3 onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();"> Name (optional)</h3>
+      <input type="text" id="name" (blur)="Check_Name($event)" placeholder="Type the name of the molecule" size="30" value="frag" [(ngModel)]="this.Name">
+
+
+      <h3 onmouseover="return overlib (' The smiles of the fragment drawn in the sketcher will automatically appear in the textbox ',HAUTO, VAUTO);" onmouseout="return nd ();">Smiles</h3>
+      <form method="POST" action="PHP/displayReactions.php" id="formSmiles" class="smiles">
+
+        <input type="text" id="smilesMolecule" name="smilesMolecule" size="30" placeholder="Paste or write the SMILES"  [(ngModel)]="this.smile" class="fieldSMILES" form="formSmiles"
+               onmouseover="return overlib (' Paste your molecule in SMILES format ',HAUTO, VAUTO);" onmouseout="return nd ();">
+
+        <input type="button" (click)="ValidateMol()" name="generateMol" value="Generate molecule in sketcher" class="btnFormSettings"
+               onmouseover="return overlib (' Click here and the smiles will be automatically drawn in the sketcher ',HAUTO, VAUTO);" onmouseout="return nd ();">
+
+      </form>
+    </fieldset>
+
+
+
+    <Br> <Br>
+
+
+
+    <fieldset id="reactions">
+
+
+      <h2><i class="fas fa-vial"></i>
+        Set of available reaction rules
+        <i id="Fleche1" class="fas fa-caret-down" (click)="ShowReactions(2)"></i>
+      </h2>
+
+      <div id="reac" style="display:none">
+        <h3 onmouseover="return overlib (' Select a function to highlight it in the sketcher',HAUTO, VAUTO);" onmouseout="return nd ();"> Functions </h3>
+
+        <div id="FunctionsPart" style="display:none">
+        <div id="scroll2" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+          <label style="color:chocolate">Choose the targeted function, if you have changed your molecule, please click again on the Validate button.</label>
+          <div  *ngFor="let n of Detected_Functions" >
+                  <input type="radio" [(ngModel)]="Selected_Function_name" id="{{n.Name}}" value="{{n.Name}}" name="checked" (click) = "Highlightfunction(0,n.Position,n.Bonds) "  style="font-family:verdana;font-weight:600;height:30px;font-size:0.8rem;">
+                  <label>{{n.Name}}</label>
+            </div>
+
+        </div>
+        <input id="Validate_Function" type="button" (click)="ValidateFunction()" value="Generate reactions rules" class="btnFormSettings"
+               onmouseover="return overlib (' Click here to generate reactions rules compatible with the targeted function',HAUTO, VAUTO);" onmouseout="return nd ();">
+        </div>
+        <h3 onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules </h3>
+        <i class="fas fa-info-circle" onmouseover="return overlib (' Click here for more information about reaction rules ',HAUTO, VAUTO);"
+           onmouseout="return nd ();" onclick='window.location.href="http://chemodots.marseille.inserm.fr/static/dots-reactions.html";'></i><Br><Br>
+        <div id="RulesPart" style="display:none">
+          <div id="scroll" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+          <form [formGroup]="Form_Rules" >
+
+            <ul formArrayName="rules">
+
+              <li [formGroupName]="i"  *ngFor="let item of FormRules.controls; let i = index">
+                <i class="fas fa-info-circle" id="{{Detected_Rules[i].Image}}"  onmouseover="return overlib ('',BACKGROUND,id,WIDTH,600,HEIGHT,250,HAUTO, VAUTO);" onmouseout="return nd ();"></i>
+                <input type="checkbox" formControlName="checked" />  Rule:{{Detected_Rules[i].Id}}  {{Detected_Rules[i].Name}}
+              </li>
+
+            </ul>
+          </form>
+          </div>
+      <input id="Validate_Rules" type="button" (click)="ValidateReactions()"  value="Validate rules" class="btnFormSettings"
+             onmouseover="return overlib (' Click here to validate the reactions rules',HAUTO, VAUTO);" onmouseout="return nd ();">
+          </div>
+        </div> <!--end reactionRules -->
+
+    </fieldset> <!-- end reactions-->
+
+    <Br> <Br>
+
+    <fieldset id="substructures">
+
+      <h2><i class="fas fa-dna"></i>
+        Substructures
+
+        <i id="Fleche2" class="fas fa-caret-down" (click)="ShowSub(2)"></i>
+      </h2>
+
+      <div id="sub" style="display:none">
+
+        <h3 onmouseover="return overlib(' At least 1. Compounds that contain at least 1 of these substructures will be kept for subsequent stages. Explicit hydrogen or SMARTS patterns can also be used.',HAUTO, VAUTO,2,CAPTION,'This substructure was generated by a script, you do not have to change it',CELLPAD,3,CAPCOLOR,'#FFFFFF',TEXTCOLOR,'#000000',TEXTSIZE,2,TEXTFONT,'Courier New',CAPTIONFONT,'Courier New-bold',CAPTIONSIZE,3,CENTER, );" onmouseout="return nd();" width="70%" > Required substructure</h3>
+        <input type="text" id="required" [(ngModel)]="Required_substructures" placeholder="Paste or write" size="50">
+
+
+
+        <h3 onmouseover="return overlib(' Compounds that contain at least 1 of these substructures will be discarded.',HAUTO, VAUTO,BORDER,2,CAPTION,'Paste undesired substructures (optional)',CELLPAD,3,CAPCOLOR,'#FFFFFF',TEXTCOLOR,'#000000',TEXTSIZE,2,TEXTFONT,'Courier New',CAPTIONFONT,'Courier New-bold',CAPTIONSIZE,3,CENTER, );" onmouseout="return nd();" width="70%" > Undesired substructures</h3>
+        <div id="Undesired_sub" style="display:none">
+          <div id="scroll3" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+            <input type="checkbox" [(ngModel)]="Check_All"
+                   (change)="checkUncheckAll()" /> <strong>Select/ Unselect All</strong>
+            <form [formGroup]="Form_UndSub" >
+
+              <ul formArrayName="UndSub">
+
+                <li [formGroupName]="i"  *ngFor="let item of FormUndSub.controls; let i = index">
+                    <i class="fas fa-info-circle" id="{{Undesired_Substructures[i].Smart}}"  onmouseover="return overlib (id,HAUTO, VAUTO);" onmouseout="return nd ();"></i>
+                    <input type="checkbox" formControlName="checked"/>  {{Undesired_Substructures[i].Name}}
+                </li>
+
+              </ul>
+            </form>
+          </div>
+          <input id="Validate_UndSub" type="button" (click)="ValidateUndSub()"  value="Validate" class="btnFormSettings"
+                 onmouseover="return overlib (' Click here to validate the undesired substructures',HAUTO, VAUTO);" onmouseout="return nd ();">
+        </div>
+
+
+
+      </div> <!--end sub-->
+
+    </fieldset> <!-- end substructures-->
+
+
+
+
+
+    <Br> <Br>
+
+    <fieldset id="settings">
+
+      <h2><i class="fas fa-cog"></i>
+        Additional settings
+
+        <i id="Fleche3" class="fas fa-caret-down" (click)="ShowSett(2)"></i>
+      </h2>
+
+      <div id="sett" style="display:none">
+
+        <h3 onmouseover="return overlib (' Define the reaction mode',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction mode</h3>
+
+
+        <select [ngModel]="this.Rmode">
+          <option value="default" selected="selected">Default</option>
+          <option value="strict">Strict</option>
+        </select>
+
+
+        <h3 onmouseover="return overlib (' Define the library of building blocks (BBs)',HAUTO, VAUTO);" onmouseout="return nd ();">Building blocks database</h3>
+
+        <select [(ngModel)]="this.BBD">
+          <option value="standard" selected="selected">Standard</option>
+          <option value="large">Large</option>
+          <option value="test">Test</option>
+        </select>
+
+      </div> <!-- end sett -->
+
+    </fieldset> <!-- end settings-->
+    <br>
+    <input type="button" class="exec" name="exec" value="Execute"
+           onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" (click)="Send_To_Galaxy()">
+
+
+
+
+    <Br> <Br>
+
+
+
+
+
+
+  </div> <!-- end right-->
+
+
+
+  </div> <!-- end main ?-->
+
+</body>
+</html>
+
