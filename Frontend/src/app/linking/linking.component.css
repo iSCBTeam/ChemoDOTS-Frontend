@@ -65,16 +65,11 @@ body{
   min-width: 1200px;
   min-height: 900px;
   max-height: 3200px;
-
 }
 
-
-
 #main{
-
   width:100%;
   height: 96%;
-
 }
 
 
@@ -84,8 +79,6 @@ body{
   border-color:#F00;
   width:40%;
   height: 100%;
-
-
 }
 #main #validate-button{
   margin-top: 2%;
@@ -96,13 +89,15 @@ body{
   max-height: 50px;
 }
 #main #Validate_Function {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
   margin-top: 2%;
-  margin-left: 0%;
-  width:80%;
-  height: 2%;
+  margin-left: 5%;
+  width:90%;
+  height: 4%;
   position: relative;
   font-size: large;
-  display: none;
+  /*display: none;*/
 }
 @media screen and (min-width: 1800px){
 
@@ -114,18 +109,8 @@ body{
   #sketchers{
     max-height: 1200px;
 }
-
-
 }
 #main #Validate_Rules {
-  margin-top: 2%;
-  margin-left: 30%;
-  width:40%;
-  height: 2%;
-  font-size: x-large;
-  position: relative;
-}
-#main #Validate_UndSub {
   margin-top: 2%;
   margin-left: 0%;
   width:40%;
@@ -133,18 +118,29 @@ body{
   font-size: x-large;
   position: relative;
 }
+#main #Validate_UndSub {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  margin-top: 2%;
+  margin-left: 0%;
+  width:80%;
+  height: 2%;
+  font-size: x-large;
+  font-weight: 600;
+  position: relative;
+}
 
 #main #sketchers{height: 95%; position:sticky; top:0;}
 
 
 #main #right{
-  margin-left:50%;
-
+  margin-left:0%;
 }
+
 fieldset{
-  width:80%;
+  width:95%;
   background-color:#ffffff;
 }
+
 @media screen and (max-height: 800px){
 
   #struct{
@@ -191,21 +187,45 @@ input[type="button"]{
 
 /*Mouseover button*/
 input[type="button"]:hover{
-  background:#FFF;
+  background:#EEE;
   color:#25537b;
+  color:#006699;
   cursor:pointer;
 }
 
 /*Execute button*/
 .exec{
-  margin-left: 20%;
+  margin-left: 0%;
   font-size: xx-large;
   width: 40%;
   max-width: 600px;
 }
 #Demo{
-  margin-left: 40%;
+  background-color:#CC6699;
+  border:2px solid #BB4499;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight: 300;
+  margin-left: 0%;
+  width: 30%;
+  min-width: 120px;
+}
+#Reset{
+  background-color:#CC6699;
+  border:2px solid #BB4499;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight: 450;
+  margin-left: 0%;
   width: 20%;
   min-width: 120px;
 }
 
+#Demo:hover{
+  background-color:#eeeeee;
+  color:#000000;
+}
+#Reset:hover{
+  background-color:#eeeeee;
+  color:#000000;
+}

@@ -49,6 +49,7 @@ h2{
 
 body{
   /*background-color:#C1DDE0;*/
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   background-color:#FFFFFF;
   height:300%;
   width:100%;
@@ -62,17 +63,14 @@ body{
 
 }
 
-
-
 #main{
 
   width:100%;
   height: 85%;
-
 }
 
-
 #main #left{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   float:left;
   border-width:4px;
   border-color:#F00;
@@ -80,13 +78,15 @@ body{
   height: 100%;
 }
 #main #validate-button{
- margin-top: 2%;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  margin-top: 2%;
   margin-left: 0%;
   width:60%;
   font-size: xx-large;
   position: sticky;
 }
 #main #Validate_Function {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   margin-top: 2%;
   margin-left: 0%;
   width:80%;
@@ -113,6 +113,7 @@ body{
 }
 
 #main #Validate_Rules {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   margin-top: 2%;
   margin-left: 0%;
   width:40%;
@@ -121,9 +122,10 @@ body{
   position: relative;
 }
 #main #Validate_UndSub {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   margin-top: 2%;
-  margin-left: 30%;
-  width:40%;
+  margin-left: 0%;
+  width:80%;
   height: 2%;
   font-size: x-large;
   position: relative;
@@ -132,23 +134,21 @@ body{
 
 
 #main #right{
-  margin-left:50%;
+  margin-left:0%;
   font-family: Verdana, Arial, Helvetica, sans-serif;
 
 }
 #main #ButtonYes{
-  margin-left:25%;
+  margin-left:0%;
   margin-bottom:2%;
-
 }
 #main #ButtonNo{
-  margin-left:25%;
+  margin-left:0%;
   margin-bottom:2%;
-
 }
 
 fieldset{
-  width:80%;
+  width:95%;
   background-color:#ffffff;
 }
 
@@ -181,19 +181,48 @@ input[type="button"]{
 
 /*Mouseover button*/
 input[type="button"]:hover{
-  background:#FFF;
+  background:#EEE;
   color:#25537b;
+  color:#006699;
   cursor:pointer;
 }
 
 /*Execute button*/
 .exec{
-  margin-left: 20%;
+  margin-left: 0%;
   font-size: xx-large;
-  width: 40%;
+  width: 60%;
   max-width: 600px;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-weight:bold;
 }
 
+#Demo{
+  background-color:#CC6699;
+  border:2px solid #BB4499;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight: 300;
+  margin-left: 0%;
+  width: 30%;
+  min-width: 120px;
+}
+#Reset{
+  background-color:#CC6699;
+  border:2px solid #BB4499;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight: 450;
+  margin-left: 0%;
+  width: 20%;
+  min-width: 120px;
+}
 
+#Demo:hover{
+  background-color:#eeeeee;
+  color:#000000;
+}
+#Reset:hover{
+  background-color:#eeeeee;
+  color:#000000;
+}

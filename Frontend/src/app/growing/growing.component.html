@@ -16,7 +16,7 @@
 
 <div id="main">
 
-  <div id="left" > <!-- left part-->
+  <div id="left"  style="text-align:center;"> <!-- left part-->
 
     <div id="sketcher" style="width:100%;min-height: 430px;max-height: 730px;max-width:850px;text-align:center;">
       <h2 style="font-family:Verdana;"><i class="fas fa-pen-square"></i> Draw Fragment</h2>
@@ -28,8 +28,9 @@
 
   <Br> <Br>
 
-  <div id="right">
+  <div id="right" style="display:flex;border:0px groove;">
 
+    <div style="margin:auto;position:relative;">
     <fieldset id="struct" style="border: groove 2px #DDDDDD;background-color:#eeeeee;">
 
       <h2 style="font-family:Verdana;">Structure</h2>
@@ -41,8 +42,8 @@
              onmouseover="return overlib (' Reset this panel',HAUTO, VAUTO);" onmouseout="return nd ();">
     </div>
 
-      <h3 style="font-family:Verdana;" onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();"> Name (optional)</h3>
-      <input type="text" id="name" (blur)="Check_Name($event)" placeholder="Type the name of the fragment" size="30" value="frag" [(ngModel)]="this.Name">
+      <h3 style="font-family:Verdana;text-align:left;" onmouseover="return overlib (' Type name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();"> Name (optional)</h3>
+      <input type="text" style="text-align:left;" id="name" (blur)="Check_Name($event)" placeholder="Type name of the fragment" size="30" value="frag" [(ngModel)]="this.Name">
 
       <h3 style="font-family:Verdana;" onmouseover="return overlib (' The smiles of the fragment drawn in the sketcher will automatically appear in the textbox ',HAUTO, VAUTO);" onmouseout="return nd ();">Smiles</h3>
 <!--
@@ -85,7 +86,7 @@
 
         </div>
 
-        <input id="Validate_Function" type="button" (click)="ValidateFunction()" value="Generate Reactions Rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;width:80%;padding: 0px 0px;"
+        <input id="Validate_Function" type="button" (click)="ValidateFunction()" value="Generate Reactions Rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;"
                onmouseover="return overlib (' Click here to generate reactions rules compatible with the targeted function',HAUTO, VAUTO);" onmouseout="return nd ();">
         </div>
         <h3 onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules </h3>
@@ -150,8 +151,10 @@
               </ul>
             </form>
           </div>
+        <div style="text-align:center;">
           <input id="Validate_UndSub" type="button" (click)="ValidateUndSub()"  value="Validate" class="btnFormSettings" style="font-family:Verdana;font-weight:900"
                  onmouseover="return overlib (' Click here to validate the undesired substructures',HAUTO, VAUTO);" onmouseout="return nd ();">
+        </div>
         </div>
 
 
@@ -193,19 +196,17 @@
 
     </fieldset> <!-- end settings-->
     <br>
-    <input type="button" class="exec" name="exec" value="Execute" style="font-family: Verdana, Arial, Helvetica, sans-serif;"
+    <div style="text-align:center">
+    <input type="button" class="exec" name="exec" value="Execute" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin-left:0px;"
            onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" (click)="Send_To_Galaxy()">
+      </div>
 
 
 
 
     <Br> <Br>
 
-
-
-
-
-
+  </div> 
   </div> <!-- end right-->
 
 

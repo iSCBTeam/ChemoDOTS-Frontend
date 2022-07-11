@@ -44,17 +44,20 @@
   <Br> <Br>
 
 
-  <div id="right">
+  <div id="right" style="display:flex;border:0px groove;">
 
+    <div style="margin:auto;position:relative; border:0px #F00 groove;">
     <fieldset id="struct" style="border: groove 2px #DDDDDD;background-color:#eeeeee;">
 
       <h2 style="font-family:Verdana;">Structures</h2>
 <!-- <i class="fab fa-atom"></i> -->
+    <div style="text-align:center;">
       <input id="Demo" type="button" (click)="LaunchDemo()"  value="Launch Demo" class="btnFormSettings" style="font-family:Verdana;margin-right: 10px"
              onmouseover="return overlib (' Click here to launch the demo',HAUTO, VAUTO);" onmouseout="return nd ();">
       <input id="Reset" type="button" (click)="ResetDemo()"  value="Reset" class="btnFormSettings" style="font-family:Verdana;margin-left: 10px"
              onmouseover="return overlib (' Reset this panel',HAUTO, VAUTO);" onmouseout="return nd ();">
 
+    </div>
 
       <h3  style="font-family:Verdana;" onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();" > Name of First fragment (optional)</h3>
       <input type="text" id="name1" placeholder="Type the name of the molecule" size="30" [(ngModel)]="this.Name1" (blur)="Check_Name($event)">
@@ -114,7 +117,7 @@
       <div id="reac" style="display:none">
         <h3 style="font-family:Verdana;" onmouseover="return overlib (' Select a function to highlight it in the sketcher',HAUTO, VAUTO);" onmouseout="return nd ();"> Detected functions for the first fragment </h3>
 
-        <div id="FunctionsPart1" style="display:none">
+        <div id="FunctionsPart1" style="display:none;text-align:center;">
           <div id="scroll1" style="overflow-y:scroll; height:150px; background:#FFFFFF;">
             <label style="color:chocolate">Choose the targeted function, if you have changed your molecule, please click again on the Validate button.</label>
             <div *ngFor = "let n of Detected_Functions1" style="text-align:left;margin-left:50px;">
@@ -133,8 +136,9 @@
               <label>{{n.Name}}</label>
             </div>
           </div>
-          <input id="Validate_Function" type="button" (click)="ValidateFunction(2)" value="Generate Reactions Rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;width:80%;padding: 0px 0px;"
-                 onmouseover="return overlib (' Click here to generate reactions rules compatible with the targeted function',HAUTO, VAUTO);" onmouseout="return nd ();">
+    <div style="text-align:center;border:0px #F00 groove;">
+        <input id="Validate_Function" type="button" (click)="ValidateFunction(2)" value="Generate Reactions Rules" class="btnFormSettings" onmouseover="return overlib (' Click here to generate reactions rules compatible with the targeted function',HAUTO, VAUTO);" onmouseout="return nd ();">
+    </div>
         </div>
         <h3 style="font-family:Verdana;" onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules for the first molecule </h3>
         <i class="fas fa-info-circle" onmouseover="return overlib (' Click here for more information about reaction rules ',HAUTO, VAUTO);"
@@ -169,8 +173,10 @@
                 </ul>
               </form>
             </div>
-          <input id="Validate_Rules" type="button" (click)="ValidateReactions()"  value="Validate rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;"
+        <div style="text-align:center;">
+          <input id="Validate_Rules" type="button" (click)="ValidateReactions()"  value="Validate Rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;"
                  onmouseover="return overlib (' Click here to validate the reactions rules',HAUTO, VAUTO);" onmouseout="return nd ();">
+        </div>
         </div>
       </div> <!--end reactionRules -->
 
@@ -215,8 +221,10 @@
               </ul>
             </form>
           </div>
+        <div style="text-align:center;">
           <input id="Validate_UndSub" type="button" (click)="ValidateUndSub()"  value="Validate" class="btnFormSettings"
                  onmouseover="return overlib (' Click here to validate the undesired substructures',HAUTO, VAUTO);" onmouseout="return nd ();">
+        </div>
         </div>
 
 
@@ -262,9 +270,12 @@
 
     </fieldset> <!-- end settings-->
     <br>
-    <input type="button" class="exec" name="exec" value="Execute" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:900" 
+    <div style="text-align:center;border:0px #00F groove;">
+        <input type="button" class="exec" name="exec" value="Execute" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:900" 
            onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" (click)="Send_To_Galaxy()" >
 
+  </div> 
+  </div> 
   </div> <!-- end right-->
 
 
