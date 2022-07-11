@@ -1,4 +1,7 @@
 # Chemodots
+
+test 
+
 Dans le répertoire source (Chemodots) faire
 
 npm install --save-dev @angular-devkit/build-angular
