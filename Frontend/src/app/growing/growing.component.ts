@@ -880,7 +880,6 @@ export class GrowingComponent implements OnInit {
     { this.surligne(event.target, false);
       return true;
     }
-
   }
 
   checkUncheckAll() {
@@ -888,8 +887,6 @@ export class GrowingComponent implements OnInit {
       checked.patchValue({checked:this.Check_All});
     });
   }
-
-
 
   //Highlight in red or green the input of the name
   surligne(input:HTMLInputElement, error:any)
@@ -900,5 +897,21 @@ export class GrowingComponent implements OnInit {
     else{
       input.style.borderColor = "#04DC13";
     }
+  }
+  DemoGrowing(){
+    this.smile="Cc1ccc(N)cc1Nc1nccc(n1)-c1cccnc1";
+    this.Name="imatinib-frag";
+    this.GenerateMol();
+    this.delay(200).then(any=>{
+      this.ValidateMol();
+    });
+  }
+  ResetDemoGrowing(){
+    this.smile=" ";
+    this.Name="frag";
+    this.GenerateMol();
+  }
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
   }
 }

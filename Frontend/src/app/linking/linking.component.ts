@@ -1005,7 +1005,14 @@ export class LinkingComponent implements OnInit {
     this.delay(200).then(any=>{
       this.ValidateMol();
     });
-
+  }
+  ResetDemo(){
+    this.smile1=" ";
+    this.Name1="frag_1";
+    this.GenerateMol(1);
+    this.smile2=" ";
+    this.Name2 = "frag_2";
+    this.GenerateMol(2);
   }
   async delay(ms: number) {
     await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
@@ -1021,7 +1028,6 @@ export class LinkingComponent implements OnInit {
     { this.surligne(event.target, false);
       return true;
     }
-
   }
   //Check or uncheck all value in undesired substructures
   checkUncheckAll() {

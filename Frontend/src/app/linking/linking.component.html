@@ -10,7 +10,7 @@
 
 <header>
   <div>
-    <span>ChemoDOTS</span>
+    <a href="index.html"><span>ChemoDOTS</span></a>
     <span>Linking Mode</span>
   </div>
 
@@ -20,16 +20,16 @@
 
   <div id="left" > <!-- left part-->
 <div id="sketchers">
-    <div id="sketcher1" style="width:100%;height: 40%;max-height: 480px">
-      <h2><i class="fas fa-pen-square"></i>Structure 1</h2>
+    <div id="sketcher1" style="width:100%;height: 40%;max-height: 480px;text-align:center;">
+      <h2 style="font-family:Verdana;"><i class="fas fa-pen-square"></i> Draw Fragment 1</h2>
       <div id="marvin-test1" style="width: 100%; height: 100%;min-height: 350px;max-height: 450px"></div>
 
     </div>
   <br>
-      <div id="sketcher2" style="width:100%;height: 40%;max-height: 480px">
-        <h2><i class="fas fa-pen-square"></i>Structure 2</h2>
+      <div id="sketcher2" style="width:100%;height: 40%;max-height: 480px;text-align:center;">
+        <h2 style="font-family:Verdana;"><i class="fas fa-pen-square"></i> Draw Fragment 2</h2>
         <div id="marvin-test2" style="width: 100%; height: 100%;min-height: 350px;max-height: 450px"></div>
-        <input id="validate-button" type="button" (click)="ValidateMol()" name="generateMol" value="Validate" class="btnFormSettings"
+        <input id="validate-button" type="button" (click)="ValidateMol()" name="generateMol" value="Validate" class="btnFormSettings" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:900;"
                onmouseover="return overlib (' Click here to validate your molecule',HAUTO, VAUTO);" onmouseout="return nd ();">
       </div>
   <br>
@@ -46,45 +46,56 @@
 
   <div id="right">
 
-    <fieldset id="struct">
+    <fieldset id="struct" style="border: groove 2px #DDDDDD;background-color:#eeeeee;">
 
-      <h2><i class="fab fa-react"></i> Structure</h2>
-      <input id="Demo" type="button" (click)="LaunchDemo()"  value="Launch Demo" class="btnFormSettings"
+      <h2 style="font-family:Verdana;">Structures</h2>
+<!-- <i class="fab fa-atom"></i> -->
+      <input id="Demo" type="button" (click)="LaunchDemo()"  value="Launch Demo" class="btnFormSettings" style="font-family:Verdana;margin-right: 10px"
              onmouseover="return overlib (' Click here to launch the demo',HAUTO, VAUTO);" onmouseout="return nd ();">
+      <input id="Reset" type="button" (click)="ResetDemo()"  value="Reset" class="btnFormSettings" style="font-family:Verdana;margin-left: 10px"
+             onmouseover="return overlib (' Reset this panel',HAUTO, VAUTO);" onmouseout="return nd ();">
 
 
-      <h3 onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();" > Name 1st structure(optional)</h3>
+      <h3  style="font-family:Verdana;" onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();" > Name of First fragment (optional)</h3>
       <input type="text" id="name1" placeholder="Type the name of the molecule" size="30" [(ngModel)]="this.Name1" (blur)="Check_Name($event)">
 
 
-      <h3 onmouseover="return overlib (' The smiles of the fragment drawn in the sketcher will automatically appear in the textbox ',HAUTO, VAUTO);" onmouseout="return nd ();">Smiles</h3>
+      <h3 style="font-family:Verdana;" onmouseover="return overlib (' The smiles of the fragment drawn in the sketcher will automatically appear in the textbox ',HAUTO, VAUTO);" onmouseout="return nd ();">Smiles Fragment 1</h3>
+<!--
       <form method="POST" action="PHP/displayReactions.php" id="formSmiles" class="smiles">
+-->
 
-        <input type="text" [(ngModel)]="smile1" id="smilesMolecule1" name="smilesMolecule1" size="30" placeholder="Paste or write the SMILES" value="" class="fieldSMILES" form="formSmiles"
-               onmouseover="return overlib (' Paste your molecule in SMILES format ',HAUTO, VAUTO);" onmouseout="return nd ();" >
+        <input type="text" [(ngModel)]="this.smile1" id="smilesMolecule1" name="smilesMolecule1" size="30" placeholder="Paste or write the SMILES" value="" class="fieldSMILES" form="formSmiles"
+               onmouseover="return overlib (' Paste your fragment in SMILES format ',HAUTO, VAUTO);" onmouseout="return nd ();" >
 
-        <input type="button" (click)="GenerateMol(1)" name="generateMol1" value="Generate molecule in sketcher" class="btnFormSettings"
+        <input type="button" (click)="GenerateMol(1)" name="generateMol1" value="Generate molecule in sketcher" class="btnFormSettings" style="font-family:Verdana;font-weight:600"
                onmouseover="return overlib (' Click here and the smiles will be automatically drawn in the sketcher ',HAUTO, VAUTO);" onmouseout="return nd ();">
 
+<!--
       </form>
+-->
 
 
 
 
-      <h3 onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();" > Name 2nd structure (optional)</h3>
-      <input type="text"  id="name2" placeholder="Type the name of the molecule" size="30" [(ngModel)]="this.Name2" (blur)="Check_Name($event)">
+      <h3 style="font-family:Verdana;" onmouseover="return overlib (' Type the name of the fragment ',HAUTO, VAUTO);" onmouseout="return nd ();" > Name of second fragment (optional)</h3>
+      <input type="text"  id="name2" placeholder="Type the name of the fragment" size="30" [(ngModel)]="this.Name2" (blur)="Check_Name($event)">
 
 
-      <h3 onmouseover="return overlib (' The smiles of the fragment drawn in the sketcher will automatically appear in the textbox ',HAUTO, VAUTO);" onmouseout="return nd ();">Smiles</h3>
+      <h3 style="font-family:Verdana;"  onmouseover="return overlib (' The smiles of the fragment drawn in the sketcher will automatically appear in the textbox ',HAUTO, VAUTO);" onmouseout="return nd ();">Smiles Fragment 2</h3>
+<!--
       <form method="POST" action="PHP/displayReactions.php" id="formSmiles" class="smiles">
+-->
 
-        <input type="text" [(ngModel)]="smile2" id="smilesMolecule2" name="smilesMolecule" size="30" placeholder="Paste or write the SMILES" value="" class="fieldSMILES" form="formSmiles"
-               onmouseover="return overlib (' Paste your molecule in SMILES format ',HAUTO, VAUTO);" onmouseout="return nd ();">
+        <input type="text" [(ngModel)]="this.smile2" id="smilesMolecule2" name="smilesMolecule" size="30" placeholder="Paste or write the SMILES" value="" class="fieldSMILES" form="formSmiles"
+               onmouseover="return overlib (' Paste your fragment in SMILES format ',HAUTO, VAUTO);" onmouseout="return nd ();">
 
-        <input type="button" (click)="GenerateMol(2)" name="generateMol2" value="Generate molecule in sketcher" class="btnFormSettings"
+        <input type="button" (click)="GenerateMol(2)" name="generateMol2" value="Generate molecule in sketcher" class="btnFormSettings" style="font-family:Verdana;font-weight:600" 
                onmouseover="return overlib (' Click here and the smiles will be automatically drawn in the sketcher ',HAUTO, VAUTO);" onmouseout="return nd ();">
 
+<!--
       </form>
+-->
 
     </fieldset>
 
@@ -94,42 +105,42 @@
 
 
 
-    <fieldset id="reactions">
-      <h2><i class="fas fa-vial"></i>
+    <fieldset id="reactions" style="border: groove 2px #DDDDDD;background-color:#eeeeee;">
+      <h2 style="font-family:Verdana;"><i class="fas fa-vial"></i>
         Set of available reaction rules
         <i id="Fleche1" class="fas fa-caret-down" (click)="ShowReactions(2)"></i>
       </h2>
 
       <div id="reac" style="display:none">
-        <h3 onmouseover="return overlib (' Select a function to highlight it in the sketcher',HAUTO, VAUTO);" onmouseout="return nd ();"> Functions for the first molecule </h3>
+        <h3 style="font-family:Verdana;" onmouseover="return overlib (' Select a function to highlight it in the sketcher',HAUTO, VAUTO);" onmouseout="return nd ();"> Detected functions for the first fragment </h3>
 
         <div id="FunctionsPart1" style="display:none">
-          <div id="scroll1" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+          <div id="scroll1" style="overflow-y:scroll; height:150px; background:#FFFFFF;">
             <label style="color:chocolate">Choose the targeted function, if you have changed your molecule, please click again on the Validate button.</label>
-            <div *ngFor = "let n of Detected_Functions1">
+            <div *ngFor = "let n of Detected_Functions1" style="text-align:left;margin-left:50px;">
               <input type="radio" (click) = "Highlightfunction(1,n.Position,n.Bonds)" [(ngModel)]="Selected_Function1_name" value={{n.Name}} name="chemfunction1" id={{n.Name}}+1 style="font-family:verdana;font-weight:600;height:30px;font-size:0.8rem;">
               <label>{{n.Name}}</label>
             </div>
           </div>
         </div>
           <br>
-          <h3 onmouseover="return overlib (' Select a function to highlight it in the sketcher',HAUTO, VAUTO);" onmouseout="return nd ();"> Functions for the second molecule </h3>
-          <div id="FunctionsPart2" style="display:none">
-          <div id="scroll2" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+          <h3 style="font-family:Verdana;" onmouseover="return overlib (' Select a function to highlight it in the sketcher',HAUTO, VAUTO);" onmouseout="return nd ();"> Detected functions for the second fragment </h3>
+          <div id="FunctionsPart2" style="display:none;text-align:center;">
+          <div id="scroll2" style="overflow-y:scroll; height:150px; background:#FFFFFF;">
             <label style="color:chocolate">Choose the targeted function, if you have changed your molecule, please click again on the Validate button.</label>
-            <div *ngFor = "let n of Detected_Functions2">
+            <div *ngFor = "let n of Detected_Functions2" style="text-align:left;margin-left:50px;">
               <input type="radio" (click) = "Highlightfunction(2,n.Position,n.Bonds)" [(ngModel)]="Selected_Function2_name" value={{n.Name}} name="chemfunction2" id={{n.Name}}+2 style="font-family:verdana;font-weight:600;height:30px;font-size:0.8rem;">
               <label>{{n.Name}}</label>
             </div>
           </div>
-          <input id="Validate_Function" type="button" (click)="ValidateFunction(2)" value="Generate reactions rules" class="btnFormSettings"
+          <input id="Validate_Function" type="button" (click)="ValidateFunction(2)" value="Generate Reactions Rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;width:80%;padding: 0px 0px;"
                  onmouseover="return overlib (' Click here to generate reactions rules compatible with the targeted function',HAUTO, VAUTO);" onmouseout="return nd ();">
         </div>
-        <h3 onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules for the first molecule </h3>
+        <h3 style="font-family:Verdana;" onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules for the first molecule </h3>
         <i class="fas fa-info-circle" onmouseover="return overlib (' Click here for more information about reaction rules ',HAUTO, VAUTO);"
            onmouseout="return nd ();" onclick='window.location.href="http://chemodots.marseille.inserm.fr/static/dots-reactions.html";'></i><Br><Br>
         <div id="RulesPart" style="display:none">
-          <div id="scroll" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+          <div id="scroll" style="overflow-y:scroll; height:150px; background:#FFFFFF;">
             <form [formGroup]="Form_Rules1" >
 
               <ul formArrayName="rules">
@@ -142,10 +153,10 @@
               </ul>
             </form>
           </div>
-          <h3 onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules for the second molecule </h3>
+          <h3 style="font-family:Verdana;" onmouseover="return overlib (' Select the reaction rules to activate during the virtual synthesis stage (1-5 reactions is advised)',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction rules for the second molecule </h3>
           <i class="fas fa-info-circle" onmouseover="return overlib (' Click here for more information about reaction rules ',HAUTO, VAUTO);"
              onmouseout="return nd ();" onclick='window.location.href="http://chemodots.marseille.inserm.fr/static/dots-reactions.html";'></i><Br><Br>
-            <div id="scroll4" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+            <div id="scroll4" style="overflow-y:scroll; height:150px; background:#FFFFFF;">
               <form [formGroup]="Form_Rules2" >
 
                 <ul formArrayName="rules">
@@ -158,7 +169,7 @@
                 </ul>
               </form>
             </div>
-          <input id="Validate_Rules" type="button" (click)="ValidateReactions()"  value="Validate rules" class="btnFormSettings"
+          <input id="Validate_Rules" type="button" (click)="ValidateReactions()"  value="Validate rules" class="btnFormSettings" style="font-family:Verdana;font-weight:600;"
                  onmouseover="return overlib (' Click here to validate the reactions rules',HAUTO, VAUTO);" onmouseout="return nd ();">
         </div>
       </div> <!--end reactionRules -->
@@ -167,27 +178,29 @@
 
     <Br> <Br>
 
-    <fieldset id="substructures">
+    <fieldset id="substructures" style="border: groove 2px #DDDDDD;background-color:#eeeeee;">
 
-      <h2><i class="fas fa-dna"></i>
+      <h2 style="font-family:Verdana;">
         Substructures
-
+<!--
+<i class="fas fa-dna"></i>
+-->
         <i id="Fleche2" class="fas fa-caret-down" (click)="ShowSub(2)"></i>
       </h2>
 
       <div id="sub" style="display:none">
 
-        <h3 onmouseover="return overlib(' At least 1. Compounds that contain at least 1 of these substructures will be kept for subsequent stages. Explicit hydrogen or SMARTS patterns can also be used.',HAUTO, VAUTO,2,CAPTION,'This substructure was generated by a script, you do not have to change it',CELLPAD,3,CAPCOLOR,'#FFFFFF',TEXTCOLOR,'#000000',TEXTSIZE,2,TEXTFONT,'Courier New',CAPTIONFONT,'Courier New-bold',CAPTIONSIZE,3,CENTER, );" onmouseout="return nd();" width="70%" > Required substructures</h3>
-        <h3> First Function</h3>
+        <h3 style="font-family:Verdana;" onmouseover="return overlib(' At least 1. Compounds that contain at least 1 of these substructures will be kept for subsequent stages. Explicit hydrogen or SMARTS patterns can also be used.',HAUTO, VAUTO,2,CAPTION,'This substructure was generated by a script, you do not have to change it',CELLPAD,3,CAPCOLOR,'#FFFFFF',TEXTCOLOR,'#000000',TEXTSIZE,2,TEXTFONT,'Courier New',CAPTIONFONT,'Courier New-bold',CAPTIONSIZE,3,CENTER, );" onmouseout="return nd();" width="70%" > Required substructures</h3>
+        <h3 style="font-family:Verdana;"> First Function</h3>
         <input type="text" id="required" [(ngModel)]="Required_substructures1" placeholder="Paste or write" size="50">
-        <h3>Second Function</h3>
+        <h3 style="font-family:Verdana;">Second Function</h3>
         <input type="text" id="required" [(ngModel)]="Required_substructures2" placeholder="Paste or write" size="50">
 
 
 
-        <h3 onmouseover="return overlib(' Compounds that contain at least 1 of these substructures will be discarded.',HAUTO, VAUTO,BORDER,2,CAPTION,'Paste undesired substructures (optional)',CELLPAD,3,CAPCOLOR,'#FFFFFF',TEXTCOLOR,'#000000',TEXTSIZE,2,TEXTFONT,'Courier New',CAPTIONFONT,'Courier New-bold',CAPTIONSIZE,3,CENTER, );" onmouseout="return nd();" width="70%" > Undesired substructures</h3>
+        <h3 style="font-family:Verdana;" onmouseover="return overlib(' Compounds that contain at least 1 of these substructures will be discarded.',HAUTO, VAUTO,BORDER,2,CAPTION,'Paste undesired substructures (optional)',CELLPAD,3,CAPCOLOR,'#FFFFFF',TEXTCOLOR,'#000000',TEXTSIZE,2,TEXTFONT,'Courier New',CAPTIONFONT,'Courier New-bold',CAPTIONSIZE,3,CENTER, );" onmouseout="return nd();" width="70%" > Undesired substructures</h3>
         <div id="Undesired_sub" style="display:none">
-          <div id="scroll3" style="overflow-y:scroll; height:150px; background:#D5E9EB;">
+          <div id="scroll3" style="overflow-y:scroll; height:150px; background:#FFFFFF;">
             <input type="checkbox" [(ngModel)]="Check_All"
                    (change)="checkUncheckAll()" /> <strong>Select/ Unselect All</strong>
             <form [formGroup]="Form_UndSub" >
@@ -218,9 +231,9 @@
 
     <Br> <Br>
 
-    <fieldset id="settings">
+    <fieldset id="settings" style="border: groove 2px #DDDDDD;background-color:#eeeeee;">
 
-      <h2><i class="fas fa-cog"></i>
+      <h2 style="font-family:Verdana;"><i class="fas fa-cog"></i>
         Additional settings
 
         <i id="Fleche3" class="fas fa-caret-down" (click)="ShowSett(2)"></i>
@@ -228,7 +241,7 @@
 
       <div id="sett" style="display:none">
 
-        <h3 onmouseover="return overlib (' Define the reaction mode',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction mode</h3>
+        <h3 style="font-family:Verdana;" onmouseover="return overlib (' Define the reaction mode',HAUTO, VAUTO);" onmouseout="return nd ();"> Reaction mode</h3>
 
 
         <select [ngModel]="this.Rmode">
@@ -237,7 +250,7 @@
         </select>
 
 
-        <h3 onmouseover="return overlib (' Define the library of building blocks (BBs)',HAUTO, VAUTO);" onmouseout="return nd ();">Building blocks database</h3>
+        <h3 style="font-family:Verdana;" onmouseover="return overlib (' Define the library of building blocks (BBs)',HAUTO, VAUTO);" onmouseout="return nd ();">Building blocks database</h3>
 
         <select [(ngModel)]="this.BBD">
           <option value="standard" selected >Standard</option>
@@ -248,16 +261,9 @@
       </div> <!-- end sett -->
 
     </fieldset> <!-- end settings-->
-
-
-
-
     <br>
-    <input type="button" class="exec" name="exec" value="Execute"
-           onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" (click)="Send_To_Galaxy()">
-
-
-
+    <input type="button" class="exec" name="exec" value="Execute" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:900" 
+           onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" (click)="Send_To_Galaxy()" >
 
   </div> <!-- end right-->
 
