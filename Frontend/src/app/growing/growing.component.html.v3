@@ -99,7 +99,7 @@
             <ul formArrayName="rules">
 
               <li [formGroupName]="i"  *ngFor="let item of FormRules.controls; let i = index">
-                <i class="fas fa-info-circle" id="{{Detected_Rules[i].Image}}"  onmouseover="return overlib ('',BACKGROUND,id,WIDTH,900,HEIGHT,125,HAUTO, VAUTO);" onmouseout="return nd ();"></i>
+                <i class="fas fa-info-circle" id="{{Detected_Rules[i].Image}}"  onmouseover="return overlib ('',BACKGROUND,id,WIDTH,600,HEIGHT,250,HAUTO, VAUTO);" onmouseout="return nd ();"></i>
                 <input type="checkbox" formControlName="checked" />  Rule:{{Detected_Rules[i].Id}}  {{Detected_Rules[i].Name}}
               </li>
 
@@ -186,7 +186,7 @@
 
         <h3 onmouseover="return overlib (' Define the library of building blocks (BBs)',HAUTO, VAUTO);" onmouseout="return nd ();">Building blocks database</h3>
 
-        <select width=50px style="font-size:16px; font-family:verdana;font-weight:600;" [(ngModel)]="this.BBD">
+        <select [(ngModel)]="this.BBD">
           <option value="standard" selected="selected">Standard</option>
           <option value="large">Large</option>
           <option value="test">Test</option>
@@ -198,7 +198,7 @@
     <br>
     <div style="text-align:center">
     <input type="button" class="exec" name="exec" value="Execute" style="font-family: Verdana, Arial, Helvetica, sans-serif;margin-left:0px;"
-           onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" onClick="window.location.href='loading.html'">
+           onmouseover="return overlib (' Send to Galaxy ChemoDOTS',HAUTO, VAUTO);" onmouseout="return nd ();" (click)="Send_To_Galaxy()">
       </div>
 
 

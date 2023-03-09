@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 const cors = require ('cors');
 app.use(cors({origin: 'http://localhost:4200', credentials: true}));
 //app.use(cors({origin: 'http://10.36.4.65:4200', credentials: true}));
+//app.use(cors({origin: 'http://192.168.43.206:4200', credentials: true}));
+//app.use(cors({origin: 'http://192.168.0.6:4200', credentials: true}));
 //app.use(cors({origin: 'http://127.0.0.1:4200', credentials: true}));
 
 
@@ -24,7 +26,6 @@ app.use(cors({origin: 'http://localhost:4200', credentials: true}));
 const Callscript_Func = require ('./Callscript_Func');
 const Callscript_rules = require ('./Callscript_rules');
 const Callscript_Sub = require ('./Callscript_Sub');
-
 
 app.post ('/Callscript_Func', (req, res) => {Callscript_Func(req,res);});
 app.post ('/Callscript_rules', (req, res) => {Callscript_rules(req,res);});

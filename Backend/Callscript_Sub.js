@@ -7,7 +7,7 @@ async function Callscript_Sub(req, res) {
         pythonOptions: ['-u'], // get print results in real-time
         args: [req.body.smiles,req.body.funcname]// An argument which can be accessed in the script using sys.argv[1]
     };
-    PythonShell.run('./Backend/Python/substruct.py', options,(err, output) => {
+    PythonShell.run('./Python/substruct.py', options,(err, output) => {
         return sendMessage(res,output);
     });
 

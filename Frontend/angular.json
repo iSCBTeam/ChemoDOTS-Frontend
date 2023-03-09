@@ -38,6 +38,7 @@
             ]
           },
           "configurations": {
+            "development": {},
             "production": {
               "fileReplacements": [
                 {
@@ -64,7 +65,7 @@
                   "maximumError": "4kb"
                 }
               ]
-            }
+            },
           }
         },
         "serve": {
@@ -73,6 +74,9 @@
             "browserTarget": "Frontend:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "Frontend:build:development"
+            },
             "production": {
               "browserTarget": "Frontend:build:production"
             }

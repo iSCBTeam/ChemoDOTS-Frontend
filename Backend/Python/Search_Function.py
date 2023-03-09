@@ -1,3 +1,5 @@
+#!/bin/env python3
+
 #Searching a chemical function in a given smiles molecule, then return the result
 
 from rdkit import Chem
@@ -7,8 +9,6 @@ from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem.Draw import IPythonConsole
 
 from rdkit.Chem import AllChem
-
-from IPython import get_ipython
 
 import re
 

@@ -4,7 +4,11 @@ test
 
 Dans le répertoire source (Chemodots) faire
 
-npm install --save-dev @angular-devkit/build-angular
+cd Backend
+npm install
+
+cd ../Frontend
+npm install
 
 Si c’est la toute première fois qu’on veut lancer le serveur web sur la machine
 
@@ -30,10 +34,11 @@ puis  Vérifier les cors dans app.js
 
 Puis faire
 
-node ./Backend/app.js
+cd Backend
+npm start
 
-Dans Frontend faire
+Pour le frontend faire
 
-./exec ou bash exec dans le dossier Frontend.
-(Ou ng serve si c’est juste pour faire des petits test et que le site soit recompiler dès qu’on modifie quelque chose dans le code)
+cd Frontend
+npm start
 

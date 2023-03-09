@@ -1,0 +1,9 @@
+# IDE
+/.idea/
+
+# MacOS annoying junk files
+._*
+.DS_Store
+
+# Windows annoying junk files
+Thumbs.db
