@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #Dictionnary which associates functions name with their smarts
 #substruct returns the smiles of the molecule without the function given in the parameters --> removes the fct
 

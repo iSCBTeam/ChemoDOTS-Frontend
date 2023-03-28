@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/usr/bin/env python3
 
 #Searching a chemical function in a given smiles molecule, then return the result
 
