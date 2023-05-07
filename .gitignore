@@ -7,3 +7,6 @@
 
 # Windows annoying junk files
 Thumbs.db
+*/node_modules/*
+*/package-lock.json
+
