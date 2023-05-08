@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 // For CORS
 const cors = require ('cors');
-app.use(cors({origin: 'http://localhost:4200', credentials: true}));
+app.use(cors({origin: 'http://localhost:5173', credentials: true}));
 //app.use(cors({origin: 'http://10.36.4.65:4200', credentials: true}));
 //app.use(cors({origin: 'http://192.168.43.206:4200', credentials: true}));
 //app.use(cors({origin: 'http://192.168.0.6:4200', credentials: true}));

@@ -4,7 +4,6 @@ import html2pdf from "html2pdf.js";
 import downloadIcon from "../../../assets/svg/download.svg";
 import printIcon from "../../../assets/svg/print.svg";
 import { getPercentage } from "../../../utils/commonUtils";
-import sam1 from "../../../../public/assets/Rules_Images/Rule_01_pictet-sengler_labeltop.png";
 
 const FinalResult = ({ editorID }) => {
   const state = useContext(stateContext)[editorID];
@@ -25,8 +24,8 @@ const FinalResult = ({ editorID }) => {
     { title: "Fsp", value: "0.1", uplimit: 5, lwlimit: 0 },
   ];
   const extraParams = [
-    { title: "Urea", value: sam1 },
-    { title: "Urea", value: sam1 },
+    { title: "Urea", value: "" },
+    { title: "Urea", value: "" },
   ];
 
   const handleDownload = () => {
