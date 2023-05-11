@@ -9,15 +9,13 @@ import {
 } from "../../../utils/commonUtils";
 import { groupingSubReactionRules } from "../../../utils/helper";
 import UndesiredSubstructures_DATABASE from "../../../utils/undesiredSubstructures";
+import GroupedReactionRules from "../components/groupedOptions";
 
 const SubStructure = ({ editorID, tabID }) => {
   const state = useContext(stateContext)[editorID];
   const [details, setDetails] = useState(null);
-  const {
-    grouped_undesired_substructure,
-    selected_undesired_substructure,
-    required_substructure,
-  } = state;
+  const { grouped_undesired_substructure, selected_undesired_substructure } =
+    state;
 
   const dispatch = useContext(dispatchContext);
 
@@ -79,38 +77,24 @@ const SubStructure = ({ editorID, tabID }) => {
     );
   };
 
-  const isAllSelectedCallBcck = useCallback(isAllSelectChecked, [
+  const isAllSelectedCallBack = useCallback(isAllSelectChecked, [
     selected_undesired_substructure,
   ]);
+
+  const onSelectAllOptions = (e) => {
+    const isChecked = e.target.checked;
+    dispatch({
+      type: "on_select_undesired_substructure",
+      instance: editorID,
+      data: UndesiredSubstructures_DATABASE,
+      bulkAdd: true,
+      isChecked,
+    });
+  };
 
   return (
     <div className="flex">
       <div className="w-1/2 bg-white shadow-lg rounded-sm border border-slate-200 m-3">
-        <div className=" flex flex-col flex-wrap">
-          <div className="m-3">
-            <label
-              className="block text-slate-800 font-semibold mb-1"
-              htmlFor="mandatory"
-            >
-              Required substructure
-            </label>
-
-            <input
-              name="required_substructure"
-              className="form-input w-full"
-              type="text"
-              value={required_substructure}
-              onChange={(e) => {
-                const data = e.target.value;
-                dispatch({
-                  type: "required_substructure",
-                  instance: editorID,
-                  data,
-                });
-              }}
-            />
-          </div>
-        </div>
         {strictValidArray(grouped_undesired_substructure) && (
           <div>
             <label
@@ -119,92 +103,36 @@ const SubStructure = ({ editorID, tabID }) => {
             >
               Undesired substructures
             </label>
+            {strictValidArrayWithLength(grouped_undesired_substructure) && (
+              <div className="m-3 flex items-center" key="All Select">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox cursor-pointer"
+                    checked={isAllSelectedCallBack(
+                      UndesiredSubstructures_DATABASE
+                    )}
+                    onChange={onSelectAllOptions}
+                  />
+                  <span className="text-sm ml-2 cursor-pointer">
+                    Select all
+                  </span>
+                </label>
+              </div>
+            )}
             {grouped_undesired_substructure.map(
               ({ title, substructures, tooltip }) => {
                 return (
-                  <AccordionBasic
-                    key={title}
-                    title={() => {
-                      return (
-                        <div className="flex">
-                          {title}
-                          <span className="ml-3">
-                            <Tooltip
-                              bg="dark"
-                              size="lg"
-                              position="right"
-                              className="mx-auto"
-                              transition_classname="w-64"
-                            >
-                              <div className="text-xs font-medium text-slate-200">
-                                {tooltip}
-                              </div>
-                            </Tooltip>
-                          </span>
-                        </div>
-                      );
-                    }}
-                  >
-                    <div className="flex flex-col flex-wrap">
-                      <div className="m-3 flex items-center" key="All Select">
-                        <label className="flex items-center">
-                          <input
-                            type="checkbox"
-                            className="form-checkbox cursor-pointer"
-                            checked={isAllSelectedCallBcck(substructures)}
-                            onChange={(e) => {
-                              onAllSelectSubStructure(
-                                substructures,
-                                e.target.checked
-                              );
-                            }}
-                          />
-                          <span className="text-sm ml-2 cursor-pointer">
-                            Select all
-                          </span>
-                        </label>
-                      </div>
-                      {substructures.map((rule) => {
-                        const { Name } = rule;
-                        const isChecked =
-                          strictValidArray(selected_undesired_substructure) &&
-                          selected_undesired_substructure.some(
-                            ({ Name: selectedName }) => Name === selectedName
-                          );
-                        return (
-                          <div className="m-3 flex items-center" key={Name}>
-                            {/* Start */}
-                            <Tooltip
-                              size="lg"
-                              position="right-top-low"
-                              transition_classname="w-52"
-                              className="mr-3"
-                            >
-                              <img
-                                src={`assets/undesired_sub_structure/byname/small/${Name}_small.png`}
-                              />
-                            </Tooltip>
-                            <label
-                              className="flex items-center"
-                              onMouseEnter={() => setDetails(rule)}
-                              onMouseLeave={() => setDetails(null)}
-                            >
-                              <input
-                                type="checkbox"
-                                className="form-checkbox cursor-pointer"
-                                onChange={() => onSelectSubStructure(rule)}
-                                checked={isChecked}
-                              />
-                              <span className="text-sm ml-2 cursor-pointer">
-                                {Name}
-                              </span>
-                            </label>
-                            {/* End */}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </AccordionBasic>
+                  <GroupedReactionRules
+                    editorID={editorID}
+                    title={title}
+                    options={substructures}
+                    selectedOptions={selected_undesired_substructure}
+                    keyValue="Name"
+                    action_type="on_select_undesired_substructure"
+                    header_tooltip={tooltip}
+                    setDetails={setDetails}
+                  />
                 );
               }
             )}

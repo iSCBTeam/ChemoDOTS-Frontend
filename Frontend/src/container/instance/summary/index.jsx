@@ -8,7 +8,6 @@ const Summary = ({ editorID }) => {
     growing_smiles,
     selected_Functions,
     selected_function_rules,
-    required_substructure,
     selected_undesired_substructure,
   } = state;
 
@@ -29,7 +28,6 @@ const Summary = ({ editorID }) => {
       title: "Function Rules",
       value: getFunctionRules(selected_function_rules),
     },
-    { title: "Required Substructure", value: required_substructure },
     {
       title: "Undesired Substructure",
       value: getFunctionRules(selected_undesired_substructure),
@@ -37,8 +35,8 @@ const Summary = ({ editorID }) => {
   ];
 
   return (
-    <div className="flex bg-white  rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-18rem)]">
-      <table className="table-auto w-1/2 divide-y divide-slate-200 border-l-2 border-slate-200">
+    <div className="flex bg-white  rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-18rem)] w-2/4">
+      <table className="table-auto  divide-y divide-slate-200 border-l-2 border-slate-200">
         {result.map(({ title, value }) => {
           return (
             <tbody className="text-sm" key={title}>

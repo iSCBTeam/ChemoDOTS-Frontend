@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import useEditor from "../../../components/customHooks/useEditor";
 import { stateContext, dispatchContext } from "../../app";
 import Banner from "../../../components/banner/Banner";
@@ -13,6 +13,7 @@ import { ConvertRestultRules } from "../../../utils/helper";
 import api from "../../../utils/api";
 import { groupingReactionRules } from "../../../utils/helper";
 import Button from "../../../components/button";
+import GroupedReactionRules from "../components/groupedOptions";
 
 const ReactionRules = ({ editorID, tabID }) => {
   const state = useContext(stateContext)[editorID];
@@ -97,6 +98,44 @@ const ReactionRules = ({ editorID, tabID }) => {
     });
   };
 
+  const isAllSelectChecked = (substructures) => {
+    return (
+      strictValidArray(substructures) &&
+      substructures.every(
+        ({ Id }) =>
+          strictValidArray(selected_function_rules) &&
+          selected_function_rules.some(
+            ({ Id: selectedID }) => selectedID === Id
+          )
+      )
+    );
+  };
+
+  const isAllSelectedCallBack = useCallback(isAllSelectChecked, [
+    selected_function_rules,
+  ]);
+
+  const onAllSelectSubStructure = (selected, isChecked = false) => {
+    dispatch({
+      type: "on_select_reaction_rules",
+      instance: editorID,
+      data: selected,
+      bulkAdd: true,
+      isChecked,
+    });
+  };
+
+  const onSelectAllOptions = (e) => {
+    const isChecked = e.target.checked;
+    dispatch({
+      type: "on_select_reaction_rules",
+      instance: editorID,
+      data: reaction_rules,
+      bulkAdd: true,
+      isChecked,
+    });
+  };
+
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <div>
@@ -110,12 +149,7 @@ const ReactionRules = ({ editorID, tabID }) => {
               const { Name, Position, Bonds } = functionOption;
               return (
                 <div className="m-3" key={Name}>
-                  <label
-                    onMouseOver={() => highlightMolecule(Position, Bonds)}
-                    onMouseOut={() => highlightMolecule("", "")}
-                    onMouseLeave={() => highlightMolecule("", "")}
-                    className="flex items-center w-fit cursor-pointer"
-                  >
+                  <label className="flex items-center w-fit cursor-pointer">
                     <input
                       type="radio"
                       className="form-radio cursor-pointer"
@@ -146,50 +180,30 @@ const ReactionRules = ({ editorID, tabID }) => {
           )}
         </div>
         <div className="m-3">
+          {strictValidArrayWithLength(grouped_reaction_rules) && (
+            <div className="m-3 flex items-center" key="All Select">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox cursor-pointer"
+                  checked={isAllSelectedCallBack(reaction_rules)}
+                  onChange={onSelectAllOptions}
+                />
+                <span className="text-sm ml-2 cursor-pointer">Select all</span>
+              </label>
+            </div>
+          )}
           {strictValidArray(grouped_reaction_rules) &&
             grouped_reaction_rules.map(({ title, rules }) => {
               return (
-                <AccordionBasic title={title} key={title}>
-                  <div className="flex flex-col flex-wrap">
-                    {rules.map((rule) => {
-                      const { Id, Name, Image } = rule;
-                      const isChecked =
-                        strictValidArray(selected_function_rules) &&
-                        selected_function_rules.some(
-                          ({ Id: selectedID }) => selectedID === Id
-                        );
-                      return (
-                        <div className="m-3" key={Id}>
-                          {/* Start */}
-                          <label className="flex items-center">
-                            <Tooltip
-                              size="lg"
-                              position="right-top"
-                              transition_classname="w-96"
-                              className="mr-3"
-                            >
-                              {/* <DynamicImage image={Image} /> */}
-                              <img src={Image} alt="image" />
-                            </Tooltip>
-                            <input
-                              type="checkbox"
-                              className="form-checkbox"
-                              onChange={() => onSelectReactionRule(rule)}
-                              checked={isChecked}
-                            />
-                            <span
-                              className="text-sm ml-2"
-                              onClick={() => onSelectReactionRule(rule)}
-                            >
-                              {`Rule-${Id} ${Name}`}
-                            </span>
-                          </label>
-                          {/* End */}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </AccordionBasic>
+                <GroupedReactionRules
+                  editorID={editorID}
+                  title={title}
+                  options={rules}
+                  selectedOptions={selected_function_rules}
+                  keyValue="Id"
+                  action_type="on_select_reaction_rules"
+                />
               );
             })}
         </div>

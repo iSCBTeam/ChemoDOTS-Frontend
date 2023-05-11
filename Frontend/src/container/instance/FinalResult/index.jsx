@@ -4,6 +4,7 @@ import html2pdf from "html2pdf.js";
 import downloadIcon from "../../../assets/svg/download.svg";
 import printIcon from "../../../assets/svg/print.svg";
 import { getPercentage } from "../../../utils/commonUtils";
+import SearchForm from "../../../components/searchField/SearchForm";
 
 const FinalResult = ({ editorID }) => {
   const state = useContext(stateContext)[editorID];
@@ -24,8 +25,14 @@ const FinalResult = ({ editorID }) => {
     { title: "Fsp", value: "0.1", uplimit: 5, lwlimit: 0 },
   ];
   const extraParams = [
-    { title: "Urea", value: "" },
-    { title: "Urea", value: "" },
+    {
+      title: "Urea",
+      value: "assets/undesired_sub_structure/byname/Acyl_cyanide.png",
+    },
+    {
+      title: "Nitro",
+      value: "assets/undesired_sub_structure/byname/Nitro.png",
+    },
   ];
 
   const handleDownload = () => {
@@ -58,16 +65,24 @@ const FinalResult = ({ editorID }) => {
       </div>
 
       <div
-        className="flex flex-col bg-white shadow-lg rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-19.5rem)]"
+        className="flex flex-col bg-white shadow-lg w-3/4 rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-19.5rem)] print:h-full"
         ref={componentRef}
       >
+        <div className="flex text-slate-800 font-semibold relative p-4">
+          <div className="w-1/2 text-center">Reference Molecule</div>
+          <div className="w-1/2 text-center">Chemical Properties</div>
+          <div
+            class="absolute bottom-0  h-px bg-slate-200"
+            aria-hidden="true"
+          ></div>
+        </div>
         <div className="flex">
           {structureImage.image && (
             <div className="w-1/2 self-center ">
               <img src={structureImage.image} />{" "}
             </div>
           )}
-          <table className="table-auto w-1/2 divide-y divide-slate-200 border-l-2 border-slate-200">
+          <table className="table-auto  divide-y divide-slate-200 ">
             {result.map(({ title, value, uplimit, lwlimit }) => {
               return (
                 <tbody className="text-sm" key={title}>
@@ -76,7 +91,13 @@ const FinalResult = ({ editorID }) => {
                       <div className="font-medium text-slate-800">{title}</div>
                     </td>
                     <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                      <div>{value}</div>
+                      <div>
+                        {title === "Name" ? (
+                          <SearchForm placeholder="Name" />
+                        ) : (
+                          value
+                        )}
+                      </div>
                       {uplimit && (
                         <div className="relative w-full h-2 bg-slate-600">
                           <div
@@ -99,22 +120,24 @@ const FinalResult = ({ editorID }) => {
             })}
           </table>
         </div>
-        {/* <table className="table-auto w-1/2 divide-y divide-slate-200 border-l-2 border-slate-200">
-          {extraParams.map(({ title, value }) => {
+        <div className="flex flex-col border border-slate-200 mt-12">
+          <div className="flex text-slate-800 font-semibold self-center p-4">
+            Compatible Chemical Reactions
+          </div>
+          {extraParams.map(({ value, title }) => {
             return (
-              <tbody className="text-sm" key={title}>
-                <tr>
-                  <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                    <div className="font-medium text-slate-800">{title}</div>
-                  </td>
-                  <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                    <img src={value} />
-                  </td>
-                </tr>
-              </tbody>
+              <div className="flex border border-slate-200">
+                <div className="grow  self-center font-medium text-slate-800 text-center">
+                  {title}
+                </div>
+                <img
+                  src={value}
+                  className="h-32 grow border border-slate-200"
+                />
+              </div>
             );
           })}
-        </table> */}
+        </div>
       </div>
     </>
   );

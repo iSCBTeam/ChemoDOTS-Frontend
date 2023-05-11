@@ -33,7 +33,6 @@ const Instance = ({ editorID, tabID }) => {
     selected_Functions,
     grouped_reaction_rules,
     selected_function_rules,
-    required_substructure,
     structureImage,
   } = state;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -66,10 +65,8 @@ const Instance = ({ editorID, tabID }) => {
       }
 
       const res = await Api.post("/Callscript_Func", data);
-      console.log("res bibek", res);
       if (strictValidArrayWithLength(res.data.data)) {
         const value = ConvertRestultFunction(res.data.data, growing_smiles);
-        console.log("value bibek", res);
         dispatch({
           type: "save_detected_function",
           instance: editorID,
@@ -77,12 +74,10 @@ const Instance = ({ editorID, tabID }) => {
         });
         goToTab(2);
       } else {
-        console.log("Could not find any function bibek", res);
         const message = "Could not find any function.";
         showError(dispatch, message);
       }
     } catch (error) {
-      console.log("error bibek", error);
       showError(dispatch, error);
     }
     setLoading(false);
@@ -102,23 +97,13 @@ const Instance = ({ editorID, tabID }) => {
       return;
     }
     setLoading(true);
-    await GenerateSub();
+    // await GenerateSub();
     goToTab(3);
     setLoading(false);
   };
 
   const onClickThird = async () => {
-    let message = "";
-    if (!strictValidStringWithLength(required_substructure)) {
-      message = "Please fill Required Substructure.";
-    }
-    if (message) {
-      showError(dispatch, message);
-      return;
-    }
-    setLoading(true);
     goToTab(4);
-    setLoading(false);
   };
 
   const onClickNext = () => {
@@ -149,29 +134,30 @@ const Instance = ({ editorID, tabID }) => {
     goToTab(calTab);
   };
 
-  const GenerateSub = async () => {
-    let send_data = {
-      smiles: growing_smiles,
-      funcname: selected_Functions.Name_Func,
-    };
-    try {
-      const res = await Api.post("/Callscript_Sub", send_data);
-      dispatch({
-        type: "substructure_data",
-        instance: editorID,
-        data: res.data.data,
-      });
-      const { data: { data } = {} } = res;
-      const val = strictValidArrayWithLength(data) ? data[0] : "";
-      dispatch({
-        type: "required_substructure",
-        instance: editorID,
-        data: val,
-      });
-    } catch (error) {
-      showError(dispatch, error.message);
-    }
-  };
+  // const GenerateSub = async () => {
+  //   let send_data = {
+  //     smiles: growing_smiles,
+  //     funcname: selected_Functions.Name_Func,
+  //   };
+  //   try {
+  //     const res = await Api.post("/Callscript_Sub", send_data);
+  //     dispatch({
+  //       type: "substructure_data",
+  //       instance: editorID,
+  //       data: res.data.data,
+  //     });
+  //     const { data: { data } = {} } = res;
+  //     const val = strictValidArrayWithLength(data) ? data[0] : "";
+  //     dispatch({
+  //       type: "required_substructure",
+  //       instance: editorID,
+  //       data: val,
+  //     });
+  //   } catch (error) {
+  //     showError(dispatch, error.message);
+  //   }
+  // };
+
   return (
     <div
       className={`flex  flex-col  shadow-lg ${

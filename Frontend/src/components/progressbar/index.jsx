@@ -13,7 +13,6 @@ const Progressbar = ({ editorID = "firstInstance" }) => {
     growing_smiles,
     selected_Functions,
     selected_function_rules,
-    required_substructure,
     selected_undesired_substructure,
   } = state;
 
@@ -28,14 +27,11 @@ const Progressbar = ({ editorID = "firstInstance" }) => {
     if (strictValidArrayWithLength(selected_function_rules)) {
       progress += 1;
     }
-    if (strictValidStringWithLength(required_substructure)) {
-      progress += 1;
-    }
     if (strictValidArrayWithLength(selected_undesired_substructure)) {
       progress += 1;
     }
 
-    const bar = (progress / 5) * 100;
+    const bar = (progress / 4) * 100;
     setProgressBar(bar);
   };
 
@@ -45,7 +41,6 @@ const Progressbar = ({ editorID = "firstInstance" }) => {
     growing_smiles,
     selected_Functions,
     selected_function_rules,
-    required_substructure,
     selected_undesired_substructure,
   ]);
 

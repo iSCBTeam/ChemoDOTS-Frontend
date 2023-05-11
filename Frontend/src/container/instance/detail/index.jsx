@@ -9,12 +9,8 @@ const Details = ({ editorID, tabID }) => {
 
   const [timeID, setTimeID] = useState(null);
 
-  const {
-    addMoleculeToSketcher,
-    editorInstance,
-    exportMolAction,
-    clearEditor,
-  } = useEditor(editorID);
+  const { addMoleculeToSketcher, editorInstance, clearEditor } =
+    useEditor(editorID);
 
   const changeValue = (val) => {
     if (timeID) clearTimeout(timeID);
@@ -41,16 +37,6 @@ const Details = ({ editorID, tabID }) => {
               }}
             >
               Launch Demo
-            </button>
-            {/* End */}
-          </div>
-          <div className="m-1.5">
-            {/* Start */}
-            <button
-              className="btn border-slate-200 hover:border-slate-300 text-indigo-500"
-              onClick={() => exportMolAction()}
-            >
-              Generate SMILES
             </button>
             {/* End */}
           </div>

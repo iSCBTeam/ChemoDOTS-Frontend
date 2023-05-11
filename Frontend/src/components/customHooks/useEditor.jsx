@@ -24,6 +24,22 @@ const useEditor = (editorID) => {
     setIntance(res);
   };
 
+  const doSearch = (smile) => {
+    dispatch({ type: "save_smiles", instance: editorID, data: smile });
+  };
+
+  const searchWithSketcherContent = () => {
+    editorInstance.exportStructure("smiles").then(
+      (response) => doSearch(response),
+      (error) => console.error(error)
+    );
+  };
+
+  useEffect(() => {
+    if (editorInstance)
+      editorInstance.on("molchange", () => searchWithSketcherContent());
+  }, [editorInstance]);
+
   const clearEditor = async () => {
     await editorInstance.clear();
   };

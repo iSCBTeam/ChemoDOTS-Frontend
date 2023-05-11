@@ -1,28 +1,22 @@
-export const updateSelectedRules = (selected, allValues) => {
-  const { Id: selectedId } = selected;
-  const index = allValues.findIndex(({ Id }) => selectedId === Id);
-
-  let updated = [];
-  if (index > -1) {
-    updated = allValues.filter(({ Id }) => selectedId !== Id);
-  } else {
-    updated = [...allValues, selected];
-  }
-  return updated;
-};
-
-export const updateSelectedUndesiredSubstructure = (action, allValues) => {
+export const updateSelectedUndesiredSubstructure = (
+  action,
+  allValues,
+  keyValue
+) => {
   const selected = action.data;
   if (action.bulkAdd) {
-    return bulkUpdateSelectedUndesiredSubstructureBulk(action, allValues);
+    return bulkUpdateSelectedUndesiredSubstructureBulk(
+      action,
+      allValues,
+      keyValue
+    );
   }
 
-  const { Name: selectedName } = selected;
-  const index = allValues.findIndex(({ Name }) => selectedName === Name);
+  const index = allValues.findIndex((v) => selected[keyValue] === v[keyValue]);
 
   let updated = [];
   if (index > -1) {
-    updated = allValues.filter(({ Name }) => selectedName !== Name);
+    updated = allValues.filter((v) => selected[keyValue] !== v[keyValue]);
   } else {
     updated = [...allValues, selected];
   }
@@ -38,7 +32,11 @@ const getUpdatedValue = (acc, current) => {
   return updated;
 };
 
-const bulkUpdateSelectedUndesiredSubstructureBulk = (action, allValues) => {
+const bulkUpdateSelectedUndesiredSubstructureBulk = (
+  action,
+  allValues,
+  keyValue
+) => {
   const selected = action.data;
   let updatedValue = [];
 
@@ -46,8 +44,7 @@ const bulkUpdateSelectedUndesiredSubstructureBulk = (action, allValues) => {
     updatedValue = selected.reduce(getUpdatedValue, allValues);
   } else {
     updatedValue = allValues.filter(
-      ({ Name }) =>
-        !selected.some(({ Name: selected_name }) => selected_name === Name)
+      (v) => !selected.some((select) => select[keyValue] === v[keyValue])
     );
   }
 

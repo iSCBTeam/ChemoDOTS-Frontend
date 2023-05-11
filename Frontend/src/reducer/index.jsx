@@ -1,7 +1,4 @@
-import {
-  updateSelectedRules,
-  updateSelectedUndesiredSubstructure,
-} from "./helpers";
+import { updateSelectedUndesiredSubstructure } from "./helpers";
 
 const initialState = {
   growing_smiles: "",
@@ -80,9 +77,10 @@ const reducer = (state, action) => {
     case "on_select_reaction_rules": {
       return {
         ...state,
-        selected_function_rules: updateSelectedRules(
-          action.data,
-          state.selected_function_rules
+        selected_function_rules: updateSelectedUndesiredSubstructure(
+          action,
+          state.selected_function_rules,
+          "Id"
         ),
       };
     }
@@ -103,7 +101,8 @@ const reducer = (state, action) => {
         ...state,
         selected_undesired_substructure: updateSelectedUndesiredSubstructure(
           action,
-          state.selected_undesired_substructure
+          state.selected_undesired_substructure,
+          "Name"
         ),
       };
     }

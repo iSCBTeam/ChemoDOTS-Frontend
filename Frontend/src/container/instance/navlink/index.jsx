@@ -17,7 +17,6 @@ const TabLink = ({ editorID, tabID }) => {
     reaction_rules,
     grouped_reaction_rules,
     selected_function_rules,
-    required_substructure,
   } = state;
   const dispatch = useContext(dispatchContext);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,12 +48,6 @@ const TabLink = ({ editorID, tabID }) => {
         } else if (!strictValidArrayWithLength(selected_function_rules)) {
           isValid = false;
           message = "Please choose at least one reaction rule.";
-        }
-        break;
-      case "3":
-        if (!strictValidStringWithLength(required_substructure)) {
-          isValid = false;
-          message = "Please fill Required Substructure.";
         }
         break;
 
