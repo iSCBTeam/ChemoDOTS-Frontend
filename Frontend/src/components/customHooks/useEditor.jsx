@@ -11,6 +11,12 @@ const sampleMolecules = {
   testmolecule: {
     smiles: "Cc1ccc(N)cc1Nc1nccc(n1)-c1cccnc1",
   },
+  piperidine: {
+    smiles: "CC(C)N1CCC(N)CC1",
+  },
+  thiophene: {
+    smiles: "OC(=O)c1ccc(Cl)s1",
+  },
 };
 
 const useEditor = (editorID) => {
@@ -85,7 +91,7 @@ const useEditor = (editorID) => {
         sample = sampleMolecules[molecule][codeType];
       } else {
         codeType = "smiles";
-        sample = sampleMolecules[molecule][codeType];
+        sample = sampleMolecules.caffeine[codeType];
       }
       const data = {
         isOpen: true,

@@ -65,7 +65,11 @@ const FinalResult = ({ editorID }) => {
       </div>
 
       <div
-        className="flex flex-col bg-white shadow-lg w-3/4 rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-19.5rem)] print:h-full"
+        className={`flex flex-col bg-white shadow-lg w-3/4 rounded-sm border border-slate-200 mx-auto print:h-full ${
+          editorID === "firstInstance"
+            ? "overflow-y-auto h-[calc(100vh-19.5rem)]"
+            : ""
+        }`}
         ref={componentRef}
       >
         <div className="flex text-slate-800 font-semibold relative p-4">
@@ -77,11 +81,9 @@ const FinalResult = ({ editorID }) => {
           ></div>
         </div>
         <div className="flex">
-          {structureImage.image && (
-            <div className="w-1/2 self-center ">
-              <img src={structureImage.image} />{" "}
-            </div>
-          )}
+          <div className="w-1/2 self-center ">
+            <img src={structureImage.image} />{" "}
+          </div>
           <table className="table-auto  divide-y divide-slate-200 ">
             {result.map(({ title, value, uplimit, lwlimit }) => {
               return (

@@ -24,6 +24,22 @@ const Details = ({ editorID, tabID }) => {
     setTimeID(id);
   };
 
+  const getLaunchValue = () => {
+    let sample = "testmolecule";
+    switch (editorID) {
+      case "secondInstance":
+        sample = "piperidine";
+        break;
+      case "thirdInstance":
+        sample = "thiophene";
+        break;
+
+      default:
+        break;
+    }
+    return sample;
+  };
+
   return (
     <div className="flex flex-col col-span-full  bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
@@ -33,7 +49,7 @@ const Details = ({ editorID, tabID }) => {
             <button
               className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
               onClick={() => {
-                addMoleculeToSketcher("testmolecule", "smiles", true);
+                addMoleculeToSketcher(getLaunchValue(), "smiles", true);
               }}
             >
               Launch Demo

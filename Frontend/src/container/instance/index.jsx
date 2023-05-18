@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Drawing from "./drawing";
 import Details from "./detail";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { stateContext, dispatchContext } from "../app";
 import NavLink from "./navlink";
 import ReactionRules from "./reactionRules";
@@ -23,8 +23,6 @@ import Progressbar from "../../components/progressbar";
 const Instance = ({ editorID, tabID }) => {
   const [isLoading, setLoading] = useState(false);
   const state = useContext(stateContext)[editorID];
-  const location = useLocation();
-  const isOnGrowing = location && location.pathname === "/growing";
 
   const dispatch = useContext(dispatchContext);
   const { editorInstance, createImageExport } = useEditor(editorID);
@@ -159,11 +157,7 @@ const Instance = ({ editorID, tabID }) => {
   // };
 
   return (
-    <div
-      className={`flex  flex-col  shadow-lg ${
-        isOnGrowing ? "h-full" : "h-3/6"
-      } `}
-    >
+    <div className="flex  flex-col  shadow-lg h-full">
       <Progressbar editorID={editorID} />
       <div className="px-4 sm:px-6 lg:px-8 py-8 grow flex flex-col">
         <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700"></div>

@@ -27,7 +27,7 @@ const Dashboard = () => {
           onClick={() =>
             navigate({
               pathname: "/linking",
-              search: `?${createSearchParams({ first_tab: 1, second_tab: 1 })}`,
+              search: `?${createSearchParams({ tab: 1 })}`,
             })
           }
         >

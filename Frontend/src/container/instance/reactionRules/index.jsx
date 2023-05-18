@@ -5,6 +5,7 @@ import Banner from "../../../components/banner/Banner";
 import AccordionBasic from "../../../components/accordion/AccordionBasic";
 import Tooltip from "../../../components/tooltip/Tooltip";
 import {
+  showError,
   strictValidArray,
   strictValidArrayWithLength,
   strictValidObjectWIthKey,
@@ -33,6 +34,9 @@ const ReactionRules = ({ editorID, tabID }) => {
     const res = await api.post("/Callscript_rules", data);
 
     const ress = ConvertRestultRules(res.data.data);
+    if (!strictValidArrayWithLength(ress)) {
+      showError(dispatch, "No Reaction Rules found.");
+    }
     dispatch({
       type: "save_reactionRules",
       instance: editorID,

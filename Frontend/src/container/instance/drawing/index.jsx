@@ -3,7 +3,7 @@ import MarvinJsWrapper from "../../../components/marvin";
 import useEditor from "../../../components/customHooks/useEditor";
 import { stateContext } from "../../app";
 
-const Drawing = ({ editorID, tabID }) => {
+const Drawing = ({ editorID }) => {
   const state = useContext(stateContext)[editorID];
   const { growing_smiles } = state;
 
