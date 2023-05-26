@@ -1,6 +1,22 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../app";
 import { validFunction } from "../../../utils/commonUtils";
+import DropdownFull from "../../../components/dropdown";
+
+const options = [
+  {
+    value: 0,
+    label: "Standard",
+  },
+  {
+    value: 1,
+    label: "Large",
+  },
+  {
+    value: 2,
+    label: "Test",
+  },
+];
 
 const Summary = () => {
   const state = useContext(stateContext).secondInstance;
@@ -48,7 +64,7 @@ const Summary = () => {
   ];
 
   return (
-    <div className="flex bg-white  rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-18rem)] w-2/4">
+    <div className="flex  flex-col bg-white  rounded-sm border border-slate-200 mx-auto overflow-y-auto h-[calc(100vh-18rem)] w-2/4">
       <table className="table-auto  divide-y divide-slate-200 border-l-2 border-slate-200">
         {result.map(({ title, value }) => {
           return (
@@ -65,6 +81,15 @@ const Summary = () => {
           );
         })}
       </table>
+      <div className="w-80 m-3">
+        <label
+          className="block text-slate-800 font-semibold  m-3"
+          htmlFor="mandatory"
+        >
+          Building Block database
+        </label>
+        <DropdownFull options={options} />
+      </div>
     </div>
   );
 };

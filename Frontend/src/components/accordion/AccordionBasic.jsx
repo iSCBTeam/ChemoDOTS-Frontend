@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function AccordionBasic(props) {
+  const { isinitialOpen = false } = props;
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (isinitialOpen) setOpen(true);
+  }, [isinitialOpen]);
   return (
     <div className="px-5 py-4 rounded-sm border border-slate-200 m-3">
       <button

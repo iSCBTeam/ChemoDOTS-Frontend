@@ -73,14 +73,6 @@ const ReactionRules = ({ editorID, tabID }) => {
     });
   }, [reaction_rules]);
 
-  const onSelectReactionRule = (selected) => {
-    dispatch({
-      type: "on_select_reaction_rules",
-      instance: editorID,
-      data: selected,
-    });
-  };
-
   const onClickFunction = (selected) => {
     const { Name, Position, Bonds } = selected;
     highlightMolecule(Position, Bonds);

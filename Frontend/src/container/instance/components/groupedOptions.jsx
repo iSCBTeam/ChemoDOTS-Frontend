@@ -58,8 +58,7 @@ const GroupedReactionRules = ({
     filteredOptions,
   ]);
 
-  const onSelectAllOptions = (e) => {
-    const isChecked = e.target.checked;
+  const onSelectAllOptions = (isChecked) => {
     dispatch({
       type: action_type,
       instance: editorID,
@@ -76,6 +75,15 @@ const GroupedReactionRules = ({
       data: selected,
     });
   };
+
+  useEffect(() => {
+    if (
+      title === "Commonly used reactions" &&
+      !strictValidArrayWithLength(selectedOptions)
+    ) {
+      onSelectAllOptions(true);
+    }
+  }, [title]);
 
   return (
     <AccordionBasic
@@ -104,6 +112,7 @@ const GroupedReactionRules = ({
             }
       }
       key={title}
+      isinitialOpen={title === "Commonly used reactions"}
     >
       <div className="flex flex-col flex-wrap">
         <SearchForm
@@ -118,7 +127,7 @@ const GroupedReactionRules = ({
                 type="checkbox"
                 className="form-checkbox cursor-pointer"
                 checked={isAllSelectedCallBack()}
-                onChange={onSelectAllOptions}
+                onChange={(e) => onSelectAllOptions(e.target.checked)}
               />
               <span className="text-sm ml-2 cursor-pointer">Select all</span>
             </label>
