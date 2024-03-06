@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Marvin JS</title>
+    <link type="text/css" rel="stylesheet" href="editor.css" />
+    <!-- Requests hang -->
+    <!-- <script src="https://marvinjs.chemicalize.com/v1/93ac9460b0c240d5a97c7d22016ef1ed/client-settings.js"></script> -->
+    <script>
+      var ChemicalizeMarvinJsConfig = {
+        "apiKey" : "93ac9460b0c240d5a97c7d22016ef1ed",
+        "serviceDomain" : "https://marvinjs.chemicalize.com"
+      };
+    </script>
+    <script src="https://marvinjs.chemicalize.com/v1/client.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <div>
+        <p>
+          Your web browser must have JavaScript enabled in order for this
+          application to display correctly.
+        </p>
+      </div>
+    </noscript>
+    <div id="sketch"></div>
+    <script>
+      (() => {
+        window.marvin = ChemicalizeMarvinJs.createEditor("#sketch");
+      })();
+    </script>
+  </body>
+</html>
